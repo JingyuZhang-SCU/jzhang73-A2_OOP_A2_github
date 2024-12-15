@@ -59,12 +59,8 @@ public class Ride implements RideInterface {
 
     @Override
     public void addVisitorToQueue(Visitor visitor) {
-        if (queue.size() < capacity) {
-            queue.add(visitor);
-            System.out.println(visitor.getName() + " 已加入 " + name + " 的队列。");
-        } else {
-            System.out.println("队列已满，" + visitor.getName() + " 无法加入。");
-        }
+        queue.add(visitor);
+        System.out.println(visitor.getName() + " 已加入 " + name + " 的队列。");
     }
 
     @Override
@@ -81,29 +77,33 @@ public class Ride implements RideInterface {
 
     @Override
     public void printQueue() {
-        System.out.println(name + " 当前队列：");
-        if (queue.isEmpty()) {
-            System.out.println("队列为空。");
-        } else {
+        System.out.print(this.name + " 有 " + queue.size() + " 位游客 (");
+        if (!queue.isEmpty()) {
+            List<String> visitorNames = new ArrayList<>();
             for (Visitor v : queue) {
-                System.out.println("- " + v.getName() + " (" + v.getTicketType() + ")");
+                visitorNames.add(v.getName());
             }
+            System.out.print(String.join(", ", visitorNames));
         }
+        System.out.println(") 在等待列队中。");
     }
 
     @Override
     public void runOneCycle() {
         System.out.println(name + " 开始进行一个周期的处理。");
-        // 假设一个周期处理一定数量的访客，例如5个
-        int cycleCapacity = 5;
+        int cycleCapacity = capacity;
+        int processed = 0;
+        List<String> processedVisitors = new ArrayList<>();
+
         for (int i = 0; i < cycleCapacity; i++) {
             Visitor visitor = removeVisitorFromQueue();
             if (visitor == null) {
-                break; // 队列为空，停止处理
+                break;
             }
-
+            processed++;
+            processedVisitors.add(visitor.getName());
         }
-        System.out.println(name + " 该周期结束。");
+        System.out.println(name + " 该周期结束。已处理 " + processed + " 位游客 (" + String.join(", ", processedVisitors) + ")。");
     }
 
     @Override
@@ -123,13 +123,14 @@ public class Ride implements RideInterface {
 
     @Override
     public void printRideHistory() {
-        System.out.println(name + " 的历史记录：");
-        if (history.isEmpty()) {
-            System.out.println("历史记录为空。");
-        } else {
+        System.out.print(this.name + " 有 " + history.size() + " 位游客 (");
+        if (!history.isEmpty()) {
+            List<String> visitorNames = new ArrayList<>();
             for (Visitor v : history) {
-                System.out.println("- " + v.getName() + " (" + v.getTicketType() + ")");
+                visitorNames.add(v.getName());
             }
+            System.out.print(String.join(", ", visitorNames));
         }
+        System.out.println(") 已经乘坐了这个过山车。");
     }
 }
