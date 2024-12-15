@@ -7,24 +7,48 @@ public class Ride implements RideInterface {
     private String type;
     private int maxCapacity;
     private Employee operator;
-    private Queue<Visitor> waitingQueue = new LinkedList<>();
-    private List<Visitor> rideHistory = new LinkedList<>();
+    private final Queue<Visitor> waitingQueue = new LinkedList<>();
+    private final List<Visitor> rideHistory = new LinkedList<>();
+
+    public Ride() {}
+
+    public Ride(String name, String type, int maxCapacity, Employee operator) {
+        this.name = name;
+        this.type = type;
+        this.maxCapacity = maxCapacity;
+        this.operator = operator;
+    }
 
     @Override
     public void addVisitorToQueue(Visitor visitor) {
-        waitingQueue.add(visitor);
+        if (visitor != null) {
+            waitingQueue.add(visitor);
+            System.out.println("Visitor " + visitor.getName() + " has been added to the queue.");
+        } else {
+            System.out.println("Failed to add visitor: visitor object is null.");
+        }
     }
 
     @Override
     public Visitor removeVisitorFromQueue() {
-        return waitingQueue.poll();
+        Visitor removedVisitor = waitingQueue.poll();
+        if (removedVisitor != null) {
+            System.out.println("Visitor " + removedVisitor.getName() + " has been removed from the queue.");
+        } else {
+            System.out.println("Failed to remove visitor: queue is empty.");
+        }
+        return removedVisitor;
     }
 
     @Override
     public void printQueue() {
-        System.out.println("Waiting visitors:");
-        for (Visitor visitor : waitingQueue) {
-            System.out.println(visitor.getName());
+        if (!waitingQueue.isEmpty()) {
+            System.out.println("Waiting visitors:");
+            for (Visitor visitor : waitingQueue) {
+                System.out.println("Name: " + visitor.getName() + ", Ticket Type: " + visitor.getTicketType());
+            }
+        } else {
+            System.out.println("No visitors are currently waiting in the queue.");
         }
     }
 
