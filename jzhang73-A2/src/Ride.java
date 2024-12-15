@@ -9,7 +9,8 @@ import java.util.Comparator;
 public class Ride implements RideInterface {
     private String name;
     private String type;
-    private int capacity;
+    private int maxRider;
+    private int numOfCycles;
     private Employee operator;
     private Queue<Visitor> queue;
     private LinkedList<Visitor> history;
@@ -18,16 +19,18 @@ public class Ride implements RideInterface {
     public Ride() {
         this.queue = new LinkedList<>();
         this.history = new LinkedList<>();
+        this.numOfCycles = 0;
     }
 
     // 带参构造
-    public Ride(String name, String type, int capacity, Employee operator) {
+    public Ride(String name, String type, int maxRider, Employee operator) {
         this.name = name;
         this.type = type;
-        this.capacity = capacity;
+        this.maxRider = maxRider;
         this.operator = operator;
         this.queue = new LinkedList<>();
         this.history = new LinkedList<>();
+        this.numOfCycles = 0;
     }
 
     // Getter 和 Setter
@@ -45,11 +48,22 @@ public class Ride implements RideInterface {
         this.type = type;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public int getMaxRider() {
+        return maxRider;
     }
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setMaxRider(int maxRider) {
+        if (maxRider < 1) {
+            System.out.println("maxRider 必须至少为1。");
+            return;
+        }
+        this.maxRider = maxRider;
+    }
+
+    public int getNumOfCycles() {
+        return numOfCycles;
+    }
+    public void setNumOfCycles(int numOfCycles) {
+        this.numOfCycles = numOfCycles;
     }
 
     public Employee getOperator() {
@@ -94,8 +108,18 @@ public class Ride implements RideInterface {
 
     @Override
     public void runOneCycle() {
+        if (operator == null) {
+            System.out.println(name + " 无法运行，因为没有分配操作员。");
+            return;
+        }
+
+        if (queue.isEmpty()) {
+            System.out.println(name + " 无法运行，因为队列中没有等待的游客。");
+            return;
+        }
+
         System.out.println(name + " 开始进行一个周期的处理。");
-        int cycleCapacity = capacity;
+        int cycleCapacity = maxRider;
         int processed = 0;
         StringBuilder processedVisitors = new StringBuilder();
 
@@ -108,9 +132,11 @@ public class Ride implements RideInterface {
             processedVisitors.append(visitor.getName()).append(", ");
         }
         if (processedVisitors.length() > 0) {
+
             processedVisitors.setLength(processedVisitors.length() - 2);
         }
         System.out.println(name + " 该周期结束。已处理 " + processed + " 位游客 (" + processedVisitors.toString() + ")。");
+        numOfCycles++;
     }
 
     @Override

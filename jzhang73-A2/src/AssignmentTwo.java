@@ -3,6 +3,7 @@ public class AssignmentTwo {
         partThree();
         partFourA();
         partFourB();
+        partFive();
     }
 
     public static void partThree() {
@@ -83,7 +84,37 @@ public class AssignmentTwo {
         System.out.println("\n历史记录中的游客（排序后）：");
         ferrisWheel.printRideHistory();
     }
-    public void partFive(){
+    public static void partFive() {
+        System.out.println("\n----- Part 5: Run a ride cycle -----");
+        Employee operator = new Employee("E44445", 34, "ID3456", "Operator", "EMP004");
+        Ride bumperCars = new Ride("Bumper Cars", "Family Ride", 4, operator);
+
+        Visitor visitor1 = new Visitor("AAAA5", 20, "V016", "VIP", "Season Pass");
+        Visitor visitor2 = new Visitor("BBBB5", 21, "V017", "Regular", "One Day Pass");
+        Visitor visitor3 = new Visitor("CCCC5", 22, "V018", "VIP", "Season Pass");
+        Visitor visitor4 = new Visitor("DDDD5", 23, "V019", "Regular", "Weekend Pass");
+        Visitor visitor5 = new Visitor("EEEE5", 24, "V020", "VIP", "Season Pass");
+        Visitor visitor6 = new Visitor("FFFF5", 25, "V021", "Regular", "One Day Pass");
+        Visitor visitor7 = new Visitor("GGGG5", 26, "V022", "VIP", "Season Pass");
+        Visitor visitor8 = new Visitor("HHHH5", 27, "V023", "Regular", "Weekend Pass");
+        Visitor visitor9 = new Visitor("IIII5", 28, "V024", "VIP", "Season Pass");
+        Visitor visitor10 = new Visitor("JJJJ5", 29, "V025", "Regular", "One Day Pass");
+
+        bumperCars.addVisitorToQueue(visitor1);
+        bumperCars.addVisitorToQueue(visitor2);
+        bumperCars.addVisitorToQueue(visitor3);
+        bumperCars.addVisitorToQueue(visitor4);
+        bumperCars.addVisitorToQueue(visitor5);
+        bumperCars.addVisitorToQueue(visitor6);
+        bumperCars.addVisitorToQueue(visitor7);
+        bumperCars.addVisitorToQueue(visitor8);
+        bumperCars.addVisitorToQueue(visitor9);
+        bumperCars.addVisitorToQueue(visitor10);
+
+        bumperCars.printQueue();
+        bumperCars.runOneCycle();
+        bumperCars.printQueue();
+        bumperCars.printRideHistory();
     }
     public void partSix(){
     }

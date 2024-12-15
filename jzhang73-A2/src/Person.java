@@ -4,7 +4,6 @@ public abstract class Person {
     private String id;
 
     public Person() {
-        // ...后续根据作业内容进行完成
     }
 
     public Person(String name, int age, String id) {
