@@ -12,9 +12,18 @@ public class Employee extends Person {
         this.employeeId = employeeId;
     }
 
+    // Getter 和 Setter
+    public String getPosition() {
+        return position;
+    }
+    public void setPosition(String position) {
+        this.position = position;
+    }
 
-    public String getPosition() { return position; }
-    public void setPosition(String position) { this.position = position; }
-    public String getEmployeeId() { return employeeId; }
-    public void setEmployeeId(String employeeId) { this.employeeId = employeeId; }
+    public String getEmployeeId() {
+        return employeeId;
+    }
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
 }

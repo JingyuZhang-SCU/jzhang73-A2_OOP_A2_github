@@ -12,9 +12,18 @@ public class Visitor extends Person {
         this.ticketType = ticketType;
     }
 
+    // Getter 和 Setter
+    public String getMembershipId() {
+        return membershipId;
+    }
+    public void setMembershipId(String membershipId) {
+        this.membershipId = membershipId;
+    }
 
-    public String getMembershipId() { return membershipId; }
-    public void setMembershipId(String membershipId) { this.membershipId = membershipId; }
-    public String getTicketType() { return ticketType; }
-    public void setTicketType(String ticketType) { this.ticketType = ticketType; }
+    public String getTicketType() {
+        return ticketType;
+    }
+    public void setTicketType(String ticketType) {
+        this.ticketType = ticketType;
+    }
 }

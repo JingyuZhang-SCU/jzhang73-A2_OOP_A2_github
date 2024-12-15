@@ -1,82 +1,47 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.List;
-
-public class Ride implements RideInterface {
+public class Ride {
     private String name;
     private String type;
-    private int maxCapacity;
+    private int capacity;
     private Employee operator;
-    private final Queue<Visitor> waitingQueue = new LinkedList<>();
-    private final List<Visitor> rideHistory = new LinkedList<>();
 
-    public Ride() {}
+    // 默认构造
+    public Ride() {
+    }
 
-    public Ride(String name, String type, int maxCapacity, Employee operator) {
+    // 带参构造
+    public Ride(String name, String type, int capacity, Employee operator) {
         this.name = name;
         this.type = type;
-        this.maxCapacity = maxCapacity;
+        this.capacity = capacity;
         this.operator = operator;
     }
 
-    @Override
-    public void addVisitorToQueue(Visitor visitor) {
-        if (visitor != null) {
-            waitingQueue.add(visitor);
-            System.out.println("Visitor " + visitor.getName() + " has been added to the queue.");
-        } else {
-            System.out.println("Failed to add visitor: visitor object is null.");
-        }
+    // Getter 和 Setter
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public Visitor removeVisitorFromQueue() {
-        Visitor removedVisitor = waitingQueue.poll();
-        if (removedVisitor != null) {
-            System.out.println("Visitor " + removedVisitor.getName() + " has been removed from the queue.");
-        } else {
-            System.out.println("Failed to remove visitor: queue is empty.");
-        }
-        return removedVisitor;
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
 
-    @Override
-    public void printQueue() {
-        if (!waitingQueue.isEmpty()) {
-            System.out.println("Waiting visitors:");
-            for (Visitor visitor : waitingQueue) {
-                System.out.println("Name: " + visitor.getName() + ", Ticket Type: " + visitor.getTicketType());
-            }
-        } else {
-            System.out.println("No visitors are currently waiting in the queue.");
-        }
+    public int getCapacity() {
+        return capacity;
+    }
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
-    @Override
-    public void runOneCycle() {
-        // 实现周期运行逻辑...
+    public Employee getOperator() {
+        return operator;
     }
-
-    @Override
-    public void addVisitorToHistory(Visitor visitor) {
-        rideHistory.add(visitor);
-    }
-
-    @Override
-    public boolean checkVisitorFromHistory(Visitor visitor) {
-        return rideHistory.contains(visitor);
-    }
-
-    @Override
-    public int numberOfVisitors() {
-        return rideHistory.size();
-    }
-
-    @Override
-    public void printRideHistory() {
-        System.out.println("Ride history:");
-        for (Visitor visitor : rideHistory) {
-            System.out.println(visitor.getName());
-        }
+    public void setOperator(Employee operator) {
+        this.operator = operator;
     }
 }
