@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
 
 public class Ride implements RideInterface {
     private String name;
@@ -204,6 +207,40 @@ public class Ride implements RideInterface {
             System.out.println(name + " 的历史记录已成功导出到文件：" + filename);
         } catch (IOException e) {
             System.out.println("导出 " + name + " 的历史记录到文件时发生错误： " + e.getMessage());
+        }
+    }
+
+    public void importRideHistory(String filename) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            int importedCount = 0;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length != 5) {
+                    System.out.println("跳过无效的行（格式错误）: " + line);
+                    continue;
+                }
+                String name = parts[0].trim();
+                int age;
+                try {
+                    age = Integer.parseInt(parts[1].trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("跳过无效的年龄值: " + parts[1].trim() + " 在行: " + line);
+                    continue;
+                }
+                String id = parts[2].trim();
+                String membershipId = parts[3].trim();
+                String ticketType = parts[4].trim();
+
+                Visitor visitor = new Visitor(name, age, id, membershipId, ticketType);
+                addVisitorToHistory(visitor);
+                importedCount++;
+            }
+            System.out.println("成功从文件 " + filename + " 导入 " + importedCount + " 位游客到 " + name + " 的历史记录中。");
+        } catch (FileNotFoundException e) {
+            System.out.println("文件未找到： " + filename);
+        } catch (IOException e) {
+            System.out.println("读取文件 " + filename + " 时发生错误： " + e.getMessage());
         }
     }
 }

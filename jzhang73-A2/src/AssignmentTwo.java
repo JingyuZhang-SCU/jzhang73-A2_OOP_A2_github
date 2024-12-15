@@ -5,6 +5,7 @@ public class AssignmentTwo {
         partFourB();
         partFive();
         partSix();
+        partSeven();
     }
 
     public static void partThree() {
@@ -140,6 +141,14 @@ public class AssignmentTwo {
         String filename = "log_flume_history.csv";
         logFlume.exportRideHistory(filename);
     }
-    public void partSeven(){
+    public static void partSeven() {
+        System.out.println("\n----- Part 7: Reading from a file -----");
+        Employee operator = new Employee("E66667", 36, "ID5678", "Operator", "EMP006");
+        Ride restoredRide = new Ride("Restored Ride", "Thrill Ride", 5, operator);
+        String importFilename = "log_flume_history.csv";
+        restoredRide.importRideHistory(importFilename);
+        System.out.println("\n历史记录中的访客数量：" + restoredRide.numberOfVisitors());
+        System.out.println("历史记录中的游客：");
+        restoredRide.printRideHistory();
     }
 }
