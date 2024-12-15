@@ -2,6 +2,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
 public class Ride implements RideInterface {
     private String name;
@@ -9,12 +10,12 @@ public class Ride implements RideInterface {
     private int capacity;
     private Employee operator;
     private Queue<Visitor> queue;
-    private List<Visitor> history;
+    private LinkedList<Visitor> history;
 
     // 默认构造
     public Ride() {
         this.queue = new LinkedList<>();
-        this.history = new ArrayList<>();
+        this.history = new LinkedList<>();
     }
 
     // 带参构造
@@ -24,7 +25,7 @@ public class Ride implements RideInterface {
         this.capacity = capacity;
         this.operator = operator;
         this.queue = new LinkedList<>();
-        this.history = new ArrayList<>();
+        this.history = new LinkedList<>();
     }
 
     // Getter 和 Setter
@@ -79,11 +80,12 @@ public class Ride implements RideInterface {
     public void printQueue() {
         System.out.print(this.name + " 有 " + queue.size() + " 位游客 (");
         if (!queue.isEmpty()) {
-            List<String> visitorNames = new ArrayList<>();
+            StringBuilder visitorNames = new StringBuilder();
             for (Visitor v : queue) {
-                visitorNames.add(v.getName());
+                visitorNames.append(v.getName()).append(", ");
             }
-            System.out.print(String.join(", ", visitorNames));
+            visitorNames.setLength(visitorNames.length() - 2);
+            System.out.print(visitorNames.toString());
         }
         System.out.println(") 在等待列队中。");
     }
@@ -93,7 +95,7 @@ public class Ride implements RideInterface {
         System.out.println(name + " 开始进行一个周期的处理。");
         int cycleCapacity = capacity;
         int processed = 0;
-        List<String> processedVisitors = new ArrayList<>();
+        StringBuilder processedVisitors = new StringBuilder();
 
         for (int i = 0; i < cycleCapacity; i++) {
             Visitor visitor = removeVisitorFromQueue();
@@ -101,35 +103,53 @@ public class Ride implements RideInterface {
                 break;
             }
             processed++;
-            processedVisitors.add(visitor.getName());
+            processedVisitors.append(visitor.getName()).append(", ");
         }
-        System.out.println(name + " 该周期结束。已处理 " + processed + " 位游客 (" + String.join(", ", processedVisitors) + ")。");
+        if (processedVisitors.length() > 0) {
+            // 移除最后的逗号和空格
+            processedVisitors.setLength(processedVisitors.length() - 2);
+        }
+        System.out.println(name + " 该周期结束。已处理 " + processed + " 位游客 (" + processedVisitors.toString() + ")。");
     }
 
     @Override
     public void addVisitorToHistory(Visitor visitor) {
         history.add(visitor);
+        System.out.println(visitor.getName() + " 已被添加到 " + name + " 的历史记录中。");
     }
 
     @Override
     public boolean checkVisitorFromHistory(Visitor visitor) {
-        return history.contains(visitor);
+        boolean exists = history.contains(visitor);
+        if (exists) {
+            System.out.println(visitor.getName() + " 在 " + name + " 的历史记录中。");
+        } else {
+            System.out.println(visitor.getName() + " 不在 " + name + " 的历史记录中。");
+        }
+        return exists;
     }
 
     @Override
     public int numberOfVisitors() {
-        return history.size();
+        int count = history.size();
+        System.out.println(name + " 的历史记录中有 " + count + " 位游客。");
+        return count;
     }
 
     @Override
     public void printRideHistory() {
         System.out.print(this.name + " 有 " + history.size() + " 位游客 (");
         if (!history.isEmpty()) {
-            List<String> visitorNames = new ArrayList<>();
-            for (Visitor v : history) {
-                visitorNames.add(v.getName());
+            Iterator<Visitor> iterator = history.iterator();
+            StringBuilder visitorNames = new StringBuilder();
+            while (iterator.hasNext()) {
+                Visitor v = iterator.next();
+                visitorNames.append(v.getName());
+                if (iterator.hasNext()) {
+                    visitorNames.append(", ");
+                }
             }
-            System.out.print(String.join(", ", visitorNames));
+            System.out.print(visitorNames.toString());
         }
         System.out.println(") 已经乘坐了这个过山车。");
     }
