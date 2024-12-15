@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.Collections;
 import java.util.Comparator;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Ride implements RideInterface {
     private String name;
@@ -184,5 +186,24 @@ public class Ride implements RideInterface {
     public void sortRideHistory(Comparator<Visitor> comparator) {
         Collections.sort(history, comparator);
         System.out.println(name + " 的历史记录已按指定顺序排序。");
+    }
+
+    public void exportRideHistory(String filename) {
+        if (history.isEmpty()) {
+            System.out.println(name + " 的历史记录为空，无法导出。");
+            return;
+        }
+
+        try (FileWriter writer = new FileWriter(filename)) {
+            for (Visitor visitor : history) {
+                // 将 Visitor 的属性以 CSV 格式写入文件
+                String line = visitor.getName() + "," + visitor.getAge() + "," + visitor.getId() + ","
+                        + visitor.getMembershipId() + "," + visitor.getTicketType() + "\n";
+                writer.write(line);
+            }
+            System.out.println(name + " 的历史记录已成功导出到文件：" + filename);
+        } catch (IOException e) {
+            System.out.println("导出 " + name + " 的历史记录到文件时发生错误： " + e.getMessage());
+        }
     }
 }

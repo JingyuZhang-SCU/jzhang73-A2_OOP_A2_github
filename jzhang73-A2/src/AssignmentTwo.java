@@ -4,6 +4,7 @@ public class AssignmentTwo {
         partFourA();
         partFourB();
         partFive();
+        partSix();
     }
 
     public static void partThree() {
@@ -116,7 +117,28 @@ public class AssignmentTwo {
         bumperCars.printQueue();
         bumperCars.printRideHistory();
     }
-    public void partSix(){
+    public static void partSix() {
+        System.out.println("\n----- Part 6: Writing to a file -----");
+        Employee operator = new Employee("E55556", 35, "ID4567", "Operator", "EMP005");
+        Ride logFlume = new Ride("Log Flume", "Water Ride", 5, operator);
+
+        Visitor visitor1 = new Visitor("AAAA6", 30, "V026", "VIP", "Season Pass");
+        Visitor visitor2 = new Visitor("BBBB6", 31, "V027", "Regular", "One Day Pass");
+        Visitor visitor3 = new Visitor("CCCC6", 32, "V028", "VIP", "Season Pass");
+        Visitor visitor4 = new Visitor("DDDD6", 33, "V029", "Regular", "Weekend Pass");
+        Visitor visitor5 = new Visitor("EEEE6", 34, "V030", "VIP", "Season Pass");
+
+        logFlume.addVisitorToQueue(visitor1);
+        logFlume.addVisitorToQueue(visitor2);
+        logFlume.addVisitorToQueue(visitor3);
+        logFlume.addVisitorToQueue(visitor4);
+        logFlume.addVisitorToQueue(visitor5);
+
+        logFlume.runOneCycle();
+        System.out.println("\n历史记录中的游客：");
+        logFlume.printRideHistory();
+        String filename = "log_flume_history.csv";
+        logFlume.exportRideHistory(filename);
     }
     public void partSeven(){
     }
