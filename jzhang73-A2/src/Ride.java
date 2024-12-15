@@ -3,6 +3,8 @@ import java.util.Queue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Ride implements RideInterface {
     private String name;
@@ -106,7 +108,6 @@ public class Ride implements RideInterface {
             processedVisitors.append(visitor.getName()).append(", ");
         }
         if (processedVisitors.length() > 0) {
-            // 移除最后的逗号和空格
             processedVisitors.setLength(processedVisitors.length() - 2);
         }
         System.out.println(name + " 该周期结束。已处理 " + processed + " 位游客 (" + processedVisitors.toString() + ")。");
@@ -152,5 +153,10 @@ public class Ride implements RideInterface {
             System.out.print(visitorNames.toString());
         }
         System.out.println(") 已经乘坐了这个过山车。");
+    }
+
+    public void sortRideHistory(Comparator<Visitor> comparator) {
+        Collections.sort(history, comparator);
+        System.out.println(name + " 的历史记录已按指定顺序排序。");
     }
 }

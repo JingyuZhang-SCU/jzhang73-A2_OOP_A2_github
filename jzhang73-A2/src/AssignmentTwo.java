@@ -2,6 +2,7 @@ public class AssignmentTwo {
     public static void main(String[] args) {
         partThree();
         partFourA();
+        partFourB();
     }
 
     public static void partThree() {
@@ -35,13 +36,13 @@ public class AssignmentTwo {
 
     public static void partFourA() {
         System.out.println("\n----- Part 4A: LinkedList Collection Demonstration -----");
-        Employee operator = new Employee("Liu Wei", 28, "ID5678", "Operator", "EMP002");
+        Employee operator = new Employee("E22224A", 28, "ID5678", "Operator", "EMP002");
         Ride waterRide = new Ride("Water Riders", "Water Ride", 4, operator);
-        Visitor visitor1 = new Visitor("Nehemia", 27, "V006", "VIP", "Season Pass");
-        Visitor visitor2 = new Visitor("Jason", 32, "V007", "Regular", "One Day Pass");
-        Visitor visitor3 = new Visitor("Lily", 24, "V008", "VIP", "Season Pass");
-        Visitor visitor4 = new Visitor("Tom", 30, "V009", "Regular", "Weekend Pass");
-        Visitor visitor5 = new Visitor("Anna", 26, "V010", "VIP", "Season Pass");
+        Visitor visitor1 = new Visitor("AAAA4A", 27, "V006", "VIP", "Season Pass");
+        Visitor visitor2 = new Visitor("BBBB4A", 32, "V007", "Regular", "One Day Pass");
+        Visitor visitor3 = new Visitor("CCCC4A", 24, "V008", "VIP", "Season Pass");
+        Visitor visitor4 = new Visitor("DDDD4A", 30, "V009", "Regular", "Weekend Pass");
+        Visitor visitor5 = new Visitor("EEEE4A", 26, "V010", "VIP", "Season Pass");
 
         waterRide.addVisitorToQueue(visitor1);
         waterRide.addVisitorToQueue(visitor2);
@@ -58,7 +59,29 @@ public class AssignmentTwo {
         waterRide.printRideHistory();
     }
 
-    public void partFourB(){
+    public static void partFourB() {
+        System.out.println("\n----- Part 4B: Sorting the Collection Demonstration -----");
+        Employee operator = new Employee("E33334B", 29, "ID9012", "Operator", "EMP003");
+        Ride ferrisWheel = new Ride("Ferris Wheel", "Leisure Ride", 5, operator);
+        Visitor visitor1 = new Visitor("AAAA4B", 24, "V011", "VIP", "Season Pass");
+        Visitor visitor2 = new Visitor("BBBB4B", 31, "V012", "Regular", "One Day Pass");
+        Visitor visitor3 = new Visitor("CCCC4B", 22, "V013", "VIP", "Season Pass");
+        Visitor visitor4 = new Visitor("DDDD4B", 28, "V014", "Regular", "Weekend Pass");
+        Visitor visitor5 = new Visitor("EEEE4B", 26, "V015", "VIP", "Season Pass");
+
+        ferrisWheel.addVisitorToQueue(visitor1);
+        ferrisWheel.addVisitorToQueue(visitor2);
+        ferrisWheel.addVisitorToQueue(visitor3);
+        ferrisWheel.addVisitorToQueue(visitor4);
+        ferrisWheel.addVisitorToQueue(visitor5);
+
+        ferrisWheel.runOneCycle();
+        System.out.println("\n历史记录中的游客（排序前）：");
+        ferrisWheel.printRideHistory();
+        VisitorComparator comparator = new VisitorComparator();
+        ferrisWheel.sortRideHistory(comparator);
+        System.out.println("\n历史记录中的游客（排序后）：");
+        ferrisWheel.printRideHistory();
     }
     public void partFive(){
     }
