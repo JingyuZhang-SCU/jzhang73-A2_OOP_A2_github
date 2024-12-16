@@ -2,6 +2,7 @@ import java.util.Comparator;
 
 /*
   按年龄排序游客，如果年龄相同，则按姓名排序。
+  Sort visitors by age, or by name if they are the same age.
  */
 public class VisitorComparator implements Comparator<Visitor> {
     @Override

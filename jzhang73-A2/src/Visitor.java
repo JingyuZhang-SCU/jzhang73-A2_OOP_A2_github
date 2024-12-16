@@ -1,5 +1,6 @@
 /*
   枚举票务类型。
+  Enumerate ticket types.
  */
 enum TicketType {
     SEASON_PASS,
@@ -9,6 +10,7 @@ enum TicketType {
 
 /*
   枚举会员类型。
+  Enumerate membership types.
  */
 enum MembershipType {
     VIP,
@@ -17,6 +19,7 @@ enum MembershipType {
 
 /*
   游客类，继承自Person，增加会员类型和票务类型。
+  Visitor class, inherited from Person, adds membership type and ticket type.
  */
 public class Visitor extends Person {
     private MembershipType membershipType;

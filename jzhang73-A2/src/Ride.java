@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 
 /*
   表示一个游乐设施，包括管理队列、历史记录、导入导出等功能。
+  Indicates an amusement facility, including queue management, history, import and export functions.
  */
 public class Ride implements RideInterface {
     private String name;
@@ -24,6 +25,7 @@ public class Ride implements RideInterface {
 
     /*
       默认构造方法。
+      The default constructor.
      */
     public Ride() {
         this.queue = new LinkedList<>();
@@ -33,12 +35,13 @@ public class Ride implements RideInterface {
 
     /*
       带参数的构造方法。
+      Construction method with parameters.
      */
     public Ride(String name, String type, int maxRider, Employee operator) {
-        this.name = name; //游乐设施名称
-        this.type = type; //游乐设施类型
-        this.maxRider = maxRider; //每个周期最大乘客数
-        this.operator = operator; //操作员
+        this.name = name; //游乐设施名称  Name of amusement facilities
+        this.type = type; //游乐设施类型  Type of amusement facilities
+        this.maxRider = maxRider; //每个周期最大乘客数  Maximum number of passengers per cycle
+        this.operator = operator; //操作员  operator
         this.queue = new LinkedList<>();
         this.history = new LinkedList<>();
         this.numOfCycles = 0;
@@ -64,7 +67,7 @@ public class Ride implements RideInterface {
     }
     public void setMaxRider(int maxRider) {
         if (maxRider < 1) {
-            System.out.println("maxRider 必须至少为1。");
+            System.out.println("maxRider must be at least 1.");
             return;
         }
         this.maxRider = maxRider;
@@ -84,11 +87,11 @@ public class Ride implements RideInterface {
         this.operator = operator;
     }
 
-    // RideInterface 方法实现
+    // RideInterface
     @Override
     public void addVisitorToQueue(Visitor visitor) {
         queue.add(visitor);
-        System.out.println(visitor.getName() + " 已加入 " + name + " 的队列。");
+        System.out.println(visitor.getName() + " has joined " + name + " 's lineup.");
     }
 
     @Override
@@ -96,38 +99,38 @@ public class Ride implements RideInterface {
         Visitor visitor = queue.poll();
         if (visitor != null) {
             addVisitorToHistory(visitor);
-            System.out.println(visitor.getName() + " 已离开队列，该记录已被记录到历史中。");
+            System.out.println(visitor.getName() + " Left the queue and the record has been recorded in history.");
         } else {
-            System.out.println("队列为空，移除失败。");
+            System.out.println("The queue was empty and failed to be removed. Procedure");
         }
         return visitor;
     }
 
     @Override
     public void printQueue() {
-        System.out.print(this.name + " 有 " + queue.size() + " 位游客 (");
+        System.out.print(this.name + " has " + queue.size() + " tourists (");
         if (!queue.isEmpty()) {
             String visitorNames = queue.stream()
                     .map(Visitor::getName)
                     .collect(Collectors.joining(", "));
             System.out.print(visitorNames);
         }
-        System.out.println(") 在等待列队中。");
+        System.out.println(") waiting in line.");
     }
 
     @Override
     public void runOneCycle() {
         if (operator == null) {
-            System.out.println(name + " 无法运行，因为没有分配操作员。");
+            System.out.println(name + " Cannot run because no operator is assigned.");
             return;
         }
 
         if (queue.isEmpty()) {
-            System.out.println(name + " 无法运行，因为队列中没有等待的游客。");
+            System.out.println(name + " Cannot run because there are no waiting tourists in the queue.");
             return;
         }
 
-        System.out.println(name + " 开始进行一个周期的处理。");
+        System.out.println(name + " Start a cycle of processing.");
         int cycleCapacity = maxRider;
         int processed = 0;
         StringBuilder processedVisitors = new StringBuilder();
@@ -143,23 +146,23 @@ public class Ride implements RideInterface {
         if (processedVisitors.length() > 0) {
             processedVisitors.setLength(processedVisitors.length() - 2);
         }
-        System.out.println(name + " 该周期结束。已处理 " + processed + " 位游客 (" + processedVisitors.toString() + ")。");
+        System.out.println(name + " The period ends.  " + processed + " visitors processed. (" + processedVisitors.toString() + ")");
         numOfCycles++;
     }
 
     @Override
     public void addVisitorToHistory(Visitor visitor) {
         history.add(visitor);
-        System.out.println(visitor.getName() + " 已被添加到 " + name + " 的历史记录中。");
+        System.out.println(visitor.getName() + " has been added to " + name + " 's history.");
     }
 
     @Override
     public boolean checkVisitorFromHistory(Visitor visitor) {
         boolean exists = history.contains(visitor);
         if (exists) {
-            System.out.println(visitor.getName() + " 在 " + name + " 的历史记录中。");
+            System.out.println(visitor.getName() + " is in " + name + " 's history.");
         } else {
-            System.out.println(visitor.getName() + " 不在 " + name + " 的历史记录中。");
+            System.out.println(visitor.getName() + " is not in " + name + " 's history.");
         }
         return exists;
     }
@@ -167,36 +170,38 @@ public class Ride implements RideInterface {
     @Override
     public int numberOfVisitors() {
         int count = history.size();
-        System.out.println(name + " 的历史记录中有 " + count + " 位游客。");
+        System.out.println(name + " has " + count + "  tourists in its history.");
         return count;
     }
 
     @Override
     public void printRideHistory() {
-        System.out.print(this.name + " 有 " + history.size() + " 位游客 (");
+        System.out.print(this.name + " has " + history.size() + " tourists(");
         if (!history.isEmpty()) {
             String visitorNames = history.stream()
                     .map(Visitor::getName)
                     .collect(Collectors.joining(", "));
             System.out.print(visitorNames);
         }
-        System.out.println(") 已经游玩过了这个项目。");
+        System.out.println(") Have already played this project.");
     }
 
     /*
      排序历史记录。
+     Sort the history.
      */
     public void sortRideHistory(Comparator<Visitor> comparator) {
         history.sort(comparator);
-        System.out.println(name + " 的历史记录已按指定顺序排序。");
+        System.out.println(" The history of "+ name + " is sorted in the specified order.");
     }
 
     /*
       导出历史记录到指定文件，使用CSV格式。
+      Export history records to a specified file in CSV format.
      */
     public void exportRideHistory(String filename) {
         if (history.isEmpty()) {
-            System.out.println(name + " 的历史记录为空，无法导出。");
+            System.out.println(" The history of "+ name + "  is empty and cannot be exported.");
             return;
         }
 
@@ -206,14 +211,15 @@ public class Ride implements RideInterface {
                         + visitor.getMembershipType() + "," + visitor.getTicketType() + "\n";
                 writer.write(line);
             }
-            System.out.println(name + " 的历史记录已成功导出到文件：" + filename);
+            System.out.println(name + "  history has been successfully exported to file:" + filename);
         } catch (IOException e) {
-            System.out.println("导出 " + name + " 的历史记录到文件时发生错误： " + e.getMessage());
+            System.out.println("An error occurred while exporting " + name + " history to a file: " + e.getMessage());
         }
     }
 
     /*
       从指定文件导入历史记录，使用CSV格式。
+      Import history from a specified file, using CSV format.
      */
     public void importRideHistory(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -222,7 +228,7 @@ public class Ride implements RideInterface {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length != 5) {
-                    System.out.println("跳过无效的行（格式错误）: " + line);
+                    System.out.println(" Skip an invalid line (formatting error) : " + line);
                     continue;
                 }
                 String name = parts[0].trim();
@@ -230,7 +236,7 @@ public class Ride implements RideInterface {
                 try {
                     age = Integer.parseInt(parts[1].trim());
                 } catch (NumberFormatException e) {
-                    System.out.println("跳过无效的年龄值: " + parts[1].trim() + " 在行: " + line);
+                    System.out.println(" Skip invalid age values: " + parts[1].trim() + " in line : " + line);
                     continue;
                 }
                 String id = parts[2].trim();
@@ -238,14 +244,14 @@ public class Ride implements RideInterface {
                 try {
                     membershipType = MembershipType.valueOf(parts[3].trim().toUpperCase());
                 } catch (IllegalArgumentException e) {
-                    System.out.println("跳过无效的会员类型: " + parts[3].trim() + " 在行: " + line);
+                    System.out.println("Skip invalid membership types: " + parts[3].trim() + " in line: " + line);
                     continue;
                 }
                 TicketType ticketType;
                 try {
                     ticketType = TicketType.valueOf(parts[4].trim().toUpperCase().replace(" ", "_"));
                 } catch (IllegalArgumentException e) {
-                    System.out.println("跳过无效的票务类型: " + parts[4].trim() + " 在行: " + line);
+                    System.out.println("Skip invalid ticket types: " + parts[4].trim() + " in line: " + line);
                     continue;
                 }
 
@@ -253,16 +259,17 @@ public class Ride implements RideInterface {
                 history.add(visitor);
                 importedCount++;
             }
-            System.out.println("成功从文件 " + filename + " 导入 " + importedCount + " 位游客到 " + name + " 的历史记录中。");
+            System.out.println(" Successfully import " + importedCount + " visitors from file " + filename + " to " + name + " history.");
         } catch (FileNotFoundException e) {
-            System.out.println("文件未找到： " + filename);
+            System.out.println("File not found: " + filename);
         } catch (IOException e) {
-            System.out.println("读取文件 " + filename + " 时发生错误： " + e.getMessage());
+            System.out.println(" Error while reading file " + filename + " ：" + e.getMessage());
         }
     }
 
     /*
       获取历史记录的不可变列表。
+      Gets an immutable list of history records.
      */
     public List<Visitor> getHistory() {
         return Collections.unmodifiableList(history);

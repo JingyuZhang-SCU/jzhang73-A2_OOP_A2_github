@@ -1,5 +1,6 @@
 /*
   抽象类，作用于任意一个人（如游客、员工），包括名称、年龄和ID。
+  An abstract class that acts on any person (e.g., visitor, employee), including name, age, and ID.
  */
 public abstract class Person {
     private String name;
@@ -11,7 +12,7 @@ public abstract class Person {
 
     public Person(String name, int age, String id) {
         if (age <= 0) {
-            throw new IllegalArgumentException("年龄必须为正数。");
+            throw new IllegalArgumentException("The age must be greater than 0.");
         }
         this.name = name;
         this.age = age;
@@ -31,7 +32,7 @@ public abstract class Person {
     }
     public void setAge(int age) {
         if(age <=0 ){
-            throw new IllegalArgumentException("年龄必须为正数。");
+            throw new IllegalArgumentException("The age must be greater than 0.");
         }
         this.age = age;
     }

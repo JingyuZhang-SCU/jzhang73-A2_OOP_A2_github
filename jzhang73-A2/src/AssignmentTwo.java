@@ -1,5 +1,6 @@
 /*
   主类，游乐设施管理系统
+  Main class, amusement facilities management system
  */
 public class AssignmentTwo {
     public static void main(String[] args) {
@@ -14,6 +15,7 @@ public class AssignmentTwo {
     /*
       Part 3: Queue Interface Demonstration
       队列接口的使用，添加、移除、打印队列和历史记录
+      Use of the queue interface to add, remove, and print queues and history
      */
     public static void partThree() {
         System.out.println("----- Part 3: Queue Interface Demonstration -----");
@@ -39,14 +41,15 @@ public class AssignmentTwo {
         rollerCoaster.printQueue();
         rollerCoaster.printRideHistory();
 
-        System.out.println("是否有 AAAA 在历史记录中？ " + rollerCoaster.checkVisitorFromHistory(visitor1));
-        System.out.println("是否有 DDDD 在历史记录中？ " + rollerCoaster.checkVisitorFromHistory(visitor5));
-        System.out.println("历史记录中的游客数量：" + rollerCoaster.numberOfVisitors());
+        System.out.println("Is there AAAA in the history? " + rollerCoaster.checkVisitorFromHistory(visitor1));
+        System.out.println("Is there DDDD in the history? " + rollerCoaster.checkVisitorFromHistory(visitor5));
+        System.out.println("Number of visitors in historical records:" + rollerCoaster.numberOfVisitors());
     }
 
     /*
       Part 4A: LinkedList Collection Demonstration
       使用LinkedList管理游乐设施的历史记录。
+      Use LinkedList to manage ride history.
      */
     public static void partFourA() {
         System.out.println("\n----- Part 4A: LinkedList Collection Demonstration -----");
@@ -76,6 +79,7 @@ public class AssignmentTwo {
     /*
       Part 4B: Sorting the Collection Demonstration
       对历史记录进行排序
+      Sort the history
      */
     public static void partFourB() {
         System.out.println("\n----- Part 4B: Sorting the Collection Demonstration -----");
@@ -94,17 +98,18 @@ public class AssignmentTwo {
         ferrisWheel.addVisitorToQueue(visitor5);
 
         ferrisWheel.runOneCycle();
-        System.out.println("\n历史记录中的游客（排序前）：");
+        System.out.println("\nVisitors in history (before sorting) :");
         ferrisWheel.printRideHistory();
         VisitorComparator comparator = new VisitorComparator();
         ferrisWheel.sortRideHistory(comparator);
-        System.out.println("\n历史记录中的游客（排序后）：");
+        System.out.println("\nVisitors in history (sorted) :");
         ferrisWheel.printRideHistory();
     }
 
     /*
       Part 5: Run a ride cycle
       演示在一个游乐设施运行周期中，如何处理队列中的游客。
+      Demonstrates how to process visitors in a queue during a ride cycle.
      */
     public static void partFive() {
         System.out.println("\n----- Part 5: Run a ride cycle -----");
@@ -142,6 +147,7 @@ public class AssignmentTwo {
     /*
       Part 6: Writing to a file
       将历史记录导出到文件(CSV)中
+      Export the history to a file (CSV)
      */
     public static void partSix() {
         System.out.println("\n----- Part 6: Writing to a file -----");
@@ -161,7 +167,7 @@ public class AssignmentTwo {
         logFlume.addVisitorToQueue(visitor5);
 
         logFlume.runOneCycle();
-        System.out.println("\n历史记录中的游客：");
+        System.out.println("\nVisitors in the historical record:");
         logFlume.printRideHistory();
         String filename = "log_flume_history.csv";
         logFlume.exportRideHistory(filename);
@@ -170,6 +176,7 @@ public class AssignmentTwo {
     /*
       Part 7: Reading from a file
       从文件中(CSV)导入历史记录。
+      Import history from a file (CSV).
      */
     public static void partSeven() {
         System.out.println("\n----- Part 7: Reading from a file -----");
@@ -177,8 +184,8 @@ public class AssignmentTwo {
         Ride restoredRide = new Ride("Restored Ride", "Thrill Ride", 5, operator);
         String importFilename = "log_flume_history.csv";
         restoredRide.importRideHistory(importFilename);
-        System.out.println("\n历史记录中的游客数量：" + restoredRide.numberOfVisitors());
-        System.out.println("历史记录中的游客：");
+        System.out.println("\nNumber of visitors in historical records:" + restoredRide.numberOfVisitors());
+        System.out.println("Visitors in the historical record:");
         restoredRide.printRideHistory();
     }
 }
