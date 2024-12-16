@@ -1,3 +1,6 @@
+/*
+  抽象类，作用于任意一个人（如游客、员工），包括名称、年龄和ID。
+ */
 public abstract class Person {
     private String name;
     private int age;
@@ -7,6 +10,9 @@ public abstract class Person {
     }
 
     public Person(String name, int age, String id) {
+        if (age <= 0) {
+            throw new IllegalArgumentException("年龄必须为正数。");
+        }
         this.name = name;
         this.age = age;
         this.id = id;
@@ -24,6 +30,9 @@ public abstract class Person {
         return age;
     }
     public void setAge(int age) {
+        if(age <=0 ){
+            throw new IllegalArgumentException("年龄必须为正数。");
+        }
         this.age = age;
     }
 

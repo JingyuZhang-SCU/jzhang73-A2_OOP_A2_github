@@ -1,3 +1,6 @@
+/*
+  主类，游乐设施管理系统
+ */
 public class AssignmentTwo {
     public static void main(String[] args) {
         partThree();
@@ -8,15 +11,19 @@ public class AssignmentTwo {
         partSeven();
     }
 
+    /*
+      Part 3: Queue Interface Demonstration
+      队列接口的使用，添加、移除、打印队列和历史记录
+     */
     public static void partThree() {
         System.out.println("----- Part 3: Queue Interface Demonstration -----");
-        Employee operator = new Employee("Simon Zhang", 30, "ID1234", "Operator", "EMP001");
+        Employee operator = new Employee("E11113", 30, "ID1234", "Operator", "EMP001");
         Ride rollerCoaster = new Ride("Roller Coaster", "Thrill Ride", 3, operator);
-        Visitor visitor1 = new Visitor("Wang", 25, "V001", "VIP", "Season Pass");
-        Visitor visitor2 = new Visitor("Lie", 28, "V002", "Regular", "One Day Pass");
-        Visitor visitor3 = new Visitor("Cheng", 22, "V003", "VIP", "Season Pass");
-        Visitor visitor4 = new Visitor("Ma", 35, "V004", "Regular", "Weekend Pass");
-        Visitor visitor5 = new Visitor("Zhan", 29, "V005", "VIP", "Season Pass");
+        Visitor visitor1 = new Visitor("AAAA3", 25, "V001", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor2 = new Visitor("BBBB3", 28, "V002", MembershipType.REGULAR, TicketType.ONE_DAY_PASS);
+        Visitor visitor3 = new Visitor("CCCC3", 22, "V003", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor4 = new Visitor("DDDD3", 35, "V004", MembershipType.REGULAR, TicketType.WEEKEND_PASS);
+        Visitor visitor5 = new Visitor("EEEE3", 29, "V005", MembershipType.VIP, TicketType.SEASON_PASS);
 
         rollerCoaster.addVisitorToQueue(visitor1);
         rollerCoaster.addVisitorToQueue(visitor2);
@@ -32,20 +39,24 @@ public class AssignmentTwo {
         rollerCoaster.printQueue();
         rollerCoaster.printRideHistory();
 
-        System.out.println("是否有 Wang 在历史记录中？ " + rollerCoaster.checkVisitorFromHistory(visitor1));
-        System.out.println("是否有 Zhan 在历史记录中？ " + rollerCoaster.checkVisitorFromHistory(visitor5));
-        System.out.println("历史记录中的访客数量：" + rollerCoaster.numberOfVisitors());
+        System.out.println("是否有 AAAA 在历史记录中？ " + rollerCoaster.checkVisitorFromHistory(visitor1));
+        System.out.println("是否有 DDDD 在历史记录中？ " + rollerCoaster.checkVisitorFromHistory(visitor5));
+        System.out.println("历史记录中的游客数量：" + rollerCoaster.numberOfVisitors());
     }
 
+    /*
+      Part 4A: LinkedList Collection Demonstration
+      使用LinkedList管理游乐设施的历史记录。
+     */
     public static void partFourA() {
         System.out.println("\n----- Part 4A: LinkedList Collection Demonstration -----");
         Employee operator = new Employee("E22224A", 28, "ID5678", "Operator", "EMP002");
         Ride waterRide = new Ride("Water Riders", "Water Ride", 4, operator);
-        Visitor visitor1 = new Visitor("AAAA4A", 27, "V006", "VIP", "Season Pass");
-        Visitor visitor2 = new Visitor("BBBB4A", 32, "V007", "Regular", "One Day Pass");
-        Visitor visitor3 = new Visitor("CCCC4A", 24, "V008", "VIP", "Season Pass");
-        Visitor visitor4 = new Visitor("DDDD4A", 30, "V009", "Regular", "Weekend Pass");
-        Visitor visitor5 = new Visitor("EEEE4A", 26, "V010", "VIP", "Season Pass");
+        Visitor visitor1 = new Visitor("AAAA4A", 27, "V006", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor2 = new Visitor("BBBB4A", 32, "V007", MembershipType.REGULAR, TicketType.ONE_DAY_PASS);
+        Visitor visitor3 = new Visitor("CCCC4A", 24, "V008", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor4 = new Visitor("DDDD4A", 30, "V009", MembershipType.REGULAR, TicketType.WEEKEND_PASS);
+        Visitor visitor5 = new Visitor("EEEE4A", 26, "V010", MembershipType.VIP, TicketType.SEASON_PASS);
 
         waterRide.addVisitorToQueue(visitor1);
         waterRide.addVisitorToQueue(visitor2);
@@ -62,15 +73,19 @@ public class AssignmentTwo {
         waterRide.printRideHistory();
     }
 
+    /*
+      Part 4B: Sorting the Collection Demonstration
+      对历史记录进行排序
+     */
     public static void partFourB() {
         System.out.println("\n----- Part 4B: Sorting the Collection Demonstration -----");
         Employee operator = new Employee("E33334B", 29, "ID9012", "Operator", "EMP003");
         Ride ferrisWheel = new Ride("Ferris Wheel", "Leisure Ride", 5, operator);
-        Visitor visitor1 = new Visitor("AAAA4B", 24, "V011", "VIP", "Season Pass");
-        Visitor visitor2 = new Visitor("BBBB4B", 31, "V012", "Regular", "One Day Pass");
-        Visitor visitor3 = new Visitor("CCCC4B", 22, "V013", "VIP", "Season Pass");
-        Visitor visitor4 = new Visitor("DDDD4B", 28, "V014", "Regular", "Weekend Pass");
-        Visitor visitor5 = new Visitor("EEEE4B", 26, "V015", "VIP", "Season Pass");
+        Visitor visitor1 = new Visitor("AAAA4B", 24, "V011", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor2 = new Visitor("BBBB4B", 31, "V012", MembershipType.REGULAR, TicketType.ONE_DAY_PASS);
+        Visitor visitor3 = new Visitor("CCCC4B", 22, "V013", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor4 = new Visitor("DDDD4B", 28, "V014", MembershipType.REGULAR, TicketType.WEEKEND_PASS);
+        Visitor visitor5 = new Visitor("EEEE4B", 26, "V015", MembershipType.VIP, TicketType.SEASON_PASS);
 
         ferrisWheel.addVisitorToQueue(visitor1);
         ferrisWheel.addVisitorToQueue(visitor2);
@@ -86,21 +101,26 @@ public class AssignmentTwo {
         System.out.println("\n历史记录中的游客（排序后）：");
         ferrisWheel.printRideHistory();
     }
+
+    /*
+      Part 5: Run a ride cycle
+      演示在一个游乐设施运行周期中，如何处理队列中的游客。
+     */
     public static void partFive() {
         System.out.println("\n----- Part 5: Run a ride cycle -----");
         Employee operator = new Employee("E44445", 34, "ID3456", "Operator", "EMP004");
         Ride bumperCars = new Ride("Bumper Cars", "Family Ride", 4, operator);
 
-        Visitor visitor1 = new Visitor("AAAA5", 20, "V016", "VIP", "Season Pass");
-        Visitor visitor2 = new Visitor("BBBB5", 21, "V017", "Regular", "One Day Pass");
-        Visitor visitor3 = new Visitor("CCCC5", 22, "V018", "VIP", "Season Pass");
-        Visitor visitor4 = new Visitor("DDDD5", 23, "V019", "Regular", "Weekend Pass");
-        Visitor visitor5 = new Visitor("EEEE5", 24, "V020", "VIP", "Season Pass");
-        Visitor visitor6 = new Visitor("FFFF5", 25, "V021", "Regular", "One Day Pass");
-        Visitor visitor7 = new Visitor("GGGG5", 26, "V022", "VIP", "Season Pass");
-        Visitor visitor8 = new Visitor("HHHH5", 27, "V023", "Regular", "Weekend Pass");
-        Visitor visitor9 = new Visitor("IIII5", 28, "V024", "VIP", "Season Pass");
-        Visitor visitor10 = new Visitor("JJJJ5", 29, "V025", "Regular", "One Day Pass");
+        Visitor visitor1 = new Visitor("AAAA5", 20, "V016", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor2 = new Visitor("BBBB5", 21, "V017", MembershipType.REGULAR, TicketType.ONE_DAY_PASS);
+        Visitor visitor3 = new Visitor("CCCC5", 22, "V018", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor4 = new Visitor("DDDD5", 23, "V019", MembershipType.REGULAR, TicketType.WEEKEND_PASS);
+        Visitor visitor5 = new Visitor("EEEE5", 24, "V020", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor6 = new Visitor("FFFF5", 25, "V021", MembershipType.REGULAR, TicketType.ONE_DAY_PASS);
+        Visitor visitor7 = new Visitor("GGGG5", 26, "V022", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor8 = new Visitor("HHHH5", 27, "V023", MembershipType.REGULAR, TicketType.WEEKEND_PASS);
+        Visitor visitor9 = new Visitor("IIII5", 28, "V024", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor10 = new Visitor("JJJJ5", 29, "V025", MembershipType.REGULAR, TicketType.ONE_DAY_PASS);
 
         bumperCars.addVisitorToQueue(visitor1);
         bumperCars.addVisitorToQueue(visitor2);
@@ -118,16 +138,21 @@ public class AssignmentTwo {
         bumperCars.printQueue();
         bumperCars.printRideHistory();
     }
+
+    /*
+      Part 6: Writing to a file
+      将历史记录导出到文件(CSV)中
+     */
     public static void partSix() {
         System.out.println("\n----- Part 6: Writing to a file -----");
         Employee operator = new Employee("E55556", 35, "ID4567", "Operator", "EMP005");
         Ride logFlume = new Ride("Log Flume", "Water Ride", 5, operator);
 
-        Visitor visitor1 = new Visitor("AAAA6", 30, "V026", "VIP", "Season Pass");
-        Visitor visitor2 = new Visitor("BBBB6", 31, "V027", "Regular", "One Day Pass");
-        Visitor visitor3 = new Visitor("CCCC6", 32, "V028", "VIP", "Season Pass");
-        Visitor visitor4 = new Visitor("DDDD6", 33, "V029", "Regular", "Weekend Pass");
-        Visitor visitor5 = new Visitor("EEEE6", 34, "V030", "VIP", "Season Pass");
+        Visitor visitor1 = new Visitor("AAAA6", 30, "V026", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor2 = new Visitor("BBBB6", 31, "V027", MembershipType.REGULAR, TicketType.ONE_DAY_PASS);
+        Visitor visitor3 = new Visitor("CCCC6", 32, "V028", MembershipType.VIP, TicketType.SEASON_PASS);
+        Visitor visitor4 = new Visitor("DDDD6", 33, "V029", MembershipType.REGULAR, TicketType.WEEKEND_PASS);
+        Visitor visitor5 = new Visitor("EEEE6", 34, "V030", MembershipType.VIP, TicketType.SEASON_PASS);
 
         logFlume.addVisitorToQueue(visitor1);
         logFlume.addVisitorToQueue(visitor2);
@@ -141,13 +166,18 @@ public class AssignmentTwo {
         String filename = "log_flume_history.csv";
         logFlume.exportRideHistory(filename);
     }
+
+    /*
+      Part 7: Reading from a file
+      从文件中(CSV)导入历史记录。
+     */
     public static void partSeven() {
         System.out.println("\n----- Part 7: Reading from a file -----");
         Employee operator = new Employee("E66667", 36, "ID5678", "Operator", "EMP006");
         Ride restoredRide = new Ride("Restored Ride", "Thrill Ride", 5, operator);
         String importFilename = "log_flume_history.csv";
         restoredRide.importRideHistory(importFilename);
-        System.out.println("\n历史记录中的访客数量：" + restoredRide.numberOfVisitors());
+        System.out.println("\n历史记录中的游客数量：" + restoredRide.numberOfVisitors());
         System.out.println("历史记录中的游客：");
         restoredRide.printRideHistory();
     }

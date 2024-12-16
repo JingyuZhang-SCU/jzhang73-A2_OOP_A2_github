@@ -1,6 +1,6 @@
-import java.util.Queue;
-import java.util.List;
-
+/*
+  Ride的接口，用于完成游乐设施中的操作。
+ */
 public interface RideInterface {
     void addVisitorToQueue(Visitor visitor);
     Visitor removeVisitorFromQueue();

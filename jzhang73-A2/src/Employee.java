@@ -1,3 +1,6 @@
+/*
+  员工类，继承自Person，增加职位和员工ID。
+ */
 public class Employee extends Person {
     private String position;
     private String employeeId;
